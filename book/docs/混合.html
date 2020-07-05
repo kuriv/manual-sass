@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>使用方法 · Sass</title>
+        <title>混合 · Sass</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -74,10 +74,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="变量.html" />
+    <link rel="next" href="继承.html" />
     
     
-    <link rel="prev" href="安装 Sass.html" />
+    <link rel="prev" href="嵌套.html" />
     
 
     
@@ -150,7 +150,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.1.2" data-path="使用方法.html">
+        <li class="chapter " data-level="1.1.2" data-path="使用方法.html">
             
                 <a href="使用方法.html">
             
@@ -189,7 +189,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.5" data-path="混合.html">
+        <li class="chapter active" data-level="1.1.5" data-path="混合.html">
             
                 <a href="混合.html">
             
@@ -263,7 +263,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >使用方法</a>
+        <a href=".." >混合</a>
     </h1>
 </div>
 
@@ -278,14 +278,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x4F7F;&#x7528;&#x65B9;&#x6CD5;">&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</h1>
-<p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C06; <code>example.scss</code> &#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x5185;&#x5BB9;&#x4FDD;&#x5B58;&#x5230; <code>example.css</code> &#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
-<pre class="language-"><code>sass example.scss example.css
-</code></pre><p>&#x5982;&#x679C;&#x9700;&#x8981;&#x76D1;&#x542C;&#x6E90;&#x6587;&#x4EF6;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x8FD9;&#x6837;&#x6BCF;&#x5F53;&#x6E90;&#x6587;&#x4EF6;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x540E;&#xFF0C;&#x5373;&#x53EF;&#x81EA;&#x52A8;&#x91CD;&#x65B0;&#x7F16;&#x8BD1;&#x3002;</p>
-<pre class="language-"><code>sass --watch example.scss
-</code></pre><p>&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x76EE;&#x5F55;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x548C;&#x8F93;&#x51FA;&#xFF0C;&#x4EE5;&#x6B64;&#x6765;&#x5B9E;&#x73B0;&#x76D1;&#x542C;&#x6E90;&#x76EE;&#x5F55;&#x4E2D;&#x6587;&#x4EF6;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x7136;&#x540E;&#x7F16;&#x8BD1;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x76EE;&#x5F55;&#x3002;</p>
-<pre class="language-"><code>sass --watch app/sass:public/css
+                                <h1 id="&#x6DF7;&#x5408;">&#x6DF7;&#x5408;</h1>
+<p>&#x8BED;&#x6CD5;&#xFF1A;</p>
+<pre class="language-"><code class="lang-scss"><span class="token keyword">@mixin</span> <span class="token function">black</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> #000<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">p </span><span class="token punctuation">{</span>
+    <span class="token keyword">@include</span> <span class="token function">black</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">@mixin</span> <span class="token function">transform</span><span class="token punctuation">(</span><span class="token variable">$property</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token variable">$property</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">p </span><span class="token punctuation">{</span>
+    <span class="token keyword">@include</span> <span class="token function">transform</span><span class="token punctuation">(</span><span class="token function">rotate</span><span class="token punctuation">(</span>30deg<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
+<p>&#x7F16;&#x8BD1;&#x540E;&#xFF1A;</p>
+<pre class="language-"><code class="lang-css"><span class="token selector">p</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #000<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">p</span> <span class="token punctuation">{</span>
+  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotate</span><span class="token punctuation">(</span>30deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
                                 
                                 </section>
                             
@@ -312,12 +332,12 @@
 
             
                 
-                <a href="安装 Sass.html" class="navigation navigation-prev " aria-label="Previous page: 安装 Sass">
+                <a href="嵌套.html" class="navigation navigation-prev " aria-label="Previous page: 嵌套">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="变量.html" class="navigation navigation-next " aria-label="Next page: 变量">
+                <a href="继承.html" class="navigation navigation-next " aria-label="Next page: 继承">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -328,7 +348,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"使用方法","level":"1.1.2","depth":2,"next":{"title":"变量","level":"1.1.3","depth":2,"path":"docs/变量.md","ref":"docs/变量.md","articles":[]},"previous":{"title":"安装 Sass","level":"1.1.1","depth":2,"path":"docs/安装 Sass.md","ref":"docs/安装 Sass.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Sass","language":"zh-hans","gitbook":">=3.0.0","description":"Sass 手册","direction":"ltr"},"file":{"path":"docs/使用方法.md","mtime":"2020-07-04T12:25:36.686Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-05T07:05:07.354Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"混合","level":"1.1.5","depth":2,"next":{"title":"继承","level":"1.1.6","depth":2,"path":"docs/继承.md","ref":"docs/继承.md","articles":[]},"previous":{"title":"嵌套","level":"1.1.4","depth":2,"path":"docs/嵌套.md","ref":"docs/嵌套.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Sass","language":"zh-hans","gitbook":">=3.0.0","description":"Sass 手册","direction":"ltr"},"file":{"path":"docs/混合.md","mtime":"2020-07-05T07:22:11.919Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-05T07:05:07.354Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
