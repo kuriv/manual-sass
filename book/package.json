@@ -1,6 +1,6 @@
 {
   "name": "manual-sass",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Sass 手册",
   "main": "index.js",
   "scripts": {
